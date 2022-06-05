@@ -1,5 +1,5 @@
 ---
-- hosts: localhost
+- hosts: 172.31.34.40
   become: yes
   tasks:
   - name: Install apache httpd  
