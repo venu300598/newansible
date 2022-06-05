@@ -4,11 +4,13 @@
   tasks: 
   - name: create ec2 instance
     ec2:
-     key_name: Myintpublic
+     key_name: ec2060522
      instance_type: t2.micro
      image: ami-081c75eaeac28ac34
      group: jfrog
      count: 1
+     region: "us-east-2"
+     wait: yes
      vpc_subnet_id: subnet-08a7b0fc85b7f7171
      assign_public_ip: yes
      instance_tags:
