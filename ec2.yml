@@ -1,23 +1,7 @@
 ---
 - hosts: localhost
+  become: yes 
   tasks:
-    - name: setting up security/firewall group
-      ec2_group: 
-         name: Venu_AWS_Security_Grp
-         description: Rules Allowing Traffic on port 22 and 80
-         region: us-east-2
-         rules:
-          - proto: tcp
-            from_port: 80
-            to_port: 80
-            cidr_ip: 0.0.0.0/0
-          - proto: tcp
-            from_port: 22
-            to_port: 22
-            cidr_ip: 0.0.0.0/0  
-         rules_egress:
-          - proto: all
-            cidr_ip: 0.0.0.0/0
     - name: Provision a EC2 Instance
       ec2: 
          key_name: Myintpublic
@@ -33,7 +17,7 @@
          monitoring: no
          vpc_subnet_id: vpc-00c77d31307ee9131
          assign_public-ip: yes
-         group: Venu_AWS_Security_Grp
+         group: jfrog
       register: ec2_out
     - name: Wait for SSH to come up
       wait_for: host={{ item.public_dns_name }} port=22 delay=60 timeout=320 state=started
