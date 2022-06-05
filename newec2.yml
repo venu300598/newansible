@@ -1,0 +1,17 @@
+---
+- hosts: localhost
+  become: yes
+  tasks: 
+  - name: create ec2 instance
+    ec2:
+     key_name: Myintpublic
+     instance_type: t2.micro
+     image: ami-081c75eaeac28ac34
+     wait: yes
+     region: us-east-2
+     group: jfrog
+     count: 1
+     vpc_subnet_id: vpc-00c77d31307ee9131
+     assign_public_ip: yes
+     instance_tags:
+     Name: ansiblenodes
